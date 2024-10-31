@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+<!-- Define el POM padre de la agencia -->
+<parent>
+	<groupId>com.agencia</groupId>
+	<artifactId>agencia</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<relativePath>../pom.xml</relativePath>
+</parent>
+
+<!-- Información específica del módulo -->
+<artifactId>microservicio-vehiculos</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<name>VehiculosService</name>
+<description>Microservicio de Vehiculos para Agencia</description>
+
+<!-- Propiedades de versión de Java y Spring Boot -->
+<properties>
+	<java.version>21</java.version>
+	<spring-boot.version>3.3.5</spring-boot.version>
+</properties>
+
+<!-- Dependencias necesarias para el microservicio -->
+<dependencies>
+	<!-- Starter para JPA y acceso a datos -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
+
+	<!-- Starter para Web (controladores y REST) -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+
+	<!-- DevTools para recarga en caliente en desarrollo -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-devtools</artifactId>
+		<scope>runtime</scope>
+		<optional>true</optional>
+	</dependency>
+
+	<!-- Lombok para simplificar el código con anotaciones -->
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<optional>true</optional>
+	</dependency>
+
+	<!-- Dependencias para testing con Spring Boot -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+
+	<!-- Driver para SQLite para la persistencia de datos -->
+	<dependency>
+		<groupId>org.xerial</groupId>
+		<artifactId>sqlite-jdbc</artifactId>
+		<version>3.47.0.0</version>
+	</dependency>
+
+	<!-- Dialectos de Hibernate, para soporte extendido de bases de datos -->
+	<dependency>
+		<groupId>org.hibernate.orm</groupId>
+		<artifactId>hibernate-community-dialects</artifactId>
+		<version>7.0.0.Beta1</version>
+	</dependency>
+</dependencies>
+
+<!-- Configuración de plugins de construcción -->
+<build>
+	<plugins>
+		<!-- Plugin de Maven para Spring Boot -->
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<version>3.3.5</version>
+			<configuration>
+				<excludes>
+					<exclude>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok</artifactId>
+					</exclude>
+				</excludes>
+			</configuration>
+		</plugin>
+
+		<!-- Plugin para saltar pruebas durante el build (puedes cambiar esto según tus necesidades) -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<configuration>
+				<skipTests>true</skipTests>
+			</configuration>
+		</plugin>
+
+		<!-- Plugin WAR para empaquetado (si necesitas desplegar como WAR) -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+		</plugin>
+	</plugins>
+</build>
+
+</project>
